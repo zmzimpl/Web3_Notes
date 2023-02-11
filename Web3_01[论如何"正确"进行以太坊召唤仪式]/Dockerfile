@@ -10,6 +10,8 @@ COPY  ./kzgcli /app/
 # 设置 app目录为工作目录
 WORKDIR /app
 # 添加一个环境变量 用于启动容器时 指定session 值
-ENV session=""
+ENV session ""
 # 添加入口点,也就是启动容器时 执行命令
 ENTRYPOINT [ "sh", "-c", "./kzgcli contribute --session-id $sessio --drand --urlrand https://ihagopian.com"]
+
+

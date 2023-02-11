@@ -220,9 +220,9 @@ COPY  ./kzgcli /app/
 # 设置 app目录为工作目录
 WORKDIR /app
 # 添加一个环境变量 用于启动容器时 指定session 值
-ENV session=""
+ENV session ""
 # 添加入口点,也就是启动容器时 执行命令
-ENTRYPOINT [ "sh", "-c", "./kzgcli contribute --session-id $sessio --drand --urlrand https://ihagopian.com"]
+ENTRYPOINT [ "sh", "-c", "./kzgcli contribute --session-id $session --drand --urlrand https://ihagopian.com"]
 ```
 执行构造镜像
 ```shell
@@ -262,7 +262,7 @@ def run():
             rs = line.replace('\n', '')
             # 打印输出
             print(f"[*] [{name}]正在创建 {rs} 镜像")
-            cmd = f'docker run -d -P --name kzg-{name} -e session=“{rs}” kzg:v1'
+            cmd = f'docker run -d -P --name kzg-{name} -e session="{rs}" kzg:v1'
             # 使用subprocess 执行命令
             call = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                     encoding="utf-8")

@@ -20,7 +20,7 @@ def run():
             rs = line.replace('\n', '')
             # 打印输出
             print(f"[*] [{name}]正在创建 {rs} 镜像")
-            cmd = f'docker run -d -P --name kzg-{name} -e session=“{rs}” kzg:v1'
+            cmd = f'docker run -d -P --name kzg-{name} -e session="{rs}" kzg:v1'
             # 使用subprocess 执行命令
             call = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                     encoding="utf-8")
