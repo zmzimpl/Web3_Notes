@@ -4,7 +4,10 @@
 @File ：bath.py
 @IDE ：PyCharm
 @Motto: 咕咕嘎嘎
-"""
+# """
+
+
+import random
 import subprocess
 
 
@@ -16,11 +19,13 @@ def run():
         for line in file.readlines():
             # 定义一个值作为累加,方便知道执行到第几个
             name += 1
+            # 定义一个随机数 每次运行脚本不会出错
+            num = random.randint(1,100000)
             # 更改格式去掉回车
             rs = line.replace('\n', '')
             # 打印输出
             print(f"[*] [{name}]正在创建 {rs} 镜像")
-            cmd = f'docker run -d -P --name kzg-{name} -e session="{rs}" kzg:v1'
+            cmd = f'docker run -d -P --name kzg-{num}-{name} -e session="{rs}" kzg:v1'
             # 使用subprocess 执行命令
             call = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                     encoding="utf-8")
@@ -29,9 +34,8 @@ def run():
             print(f"[*] {rs} 镜像创建成功 ID: {docker_id}")
             # 写入日志 保存文件
             with open('docker-out.txt', 'a') as f:
-                f.write(f"kzg-{name} session:{rs} docker-id:{docker_id}\n")
+                f.write(f"kzg-{num}-{name} session:{rs} docker-id:{docker_id}\n")
 
 
 if __name__ == '__main__':
     run()
-
