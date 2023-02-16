@@ -12,6 +12,6 @@ WORKDIR /app
 # 添加一个环境变量 用于启动容器时 指定session 值
 ENV session ""
 # 添加入口点,也就是启动容器时 执行命令
-ENTRYPOINT [ "sh", "-c", "./kzgcli contribute --session-id $sessio --drand --urlrand https://ihagopian.com"]
+ENTRYPOINT [ "sh", "-c", "./kzgcli contribute --session-id $session --drand --urlrand https://ihagopian.com"]
 
 
